@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Star, Quote } from "lucide-react"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { Star, Quote } from "lucide-react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const testimonials = [
   {
@@ -30,11 +30,17 @@ const testimonials = [
     company: "FutureAI",
     rating: 5,
   },
-]
+];
 
-function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimonials)[0]; index: number }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+function TestimonialCard({
+  testimonial,
+  index,
+}: {
+  testimonial: (typeof testimonials)[0];
+  index: number;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <motion.div
@@ -50,30 +56,36 @@ function TestimonialCard({ testimonial, index }: { testimonial: (typeof testimon
           <motion.div
             key={i}
             initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
+            }
             transition={{ duration: 0.2, delay: index * 0.1 + i * 0.05 }}
           >
             <Star className="h-4 w-4 fill-primary text-primary" />
           </motion.div>
         ))}
       </div>
-      <blockquote className="text-sm text-card-foreground leading-relaxed mb-4">"{testimonial.quote}"</blockquote>
+      <blockquote className="text-sm text-card-foreground leading-relaxed mb-4">
+        "{testimonial.quote}"
+      </blockquote>
       <div className="border-t border-border pt-4">
-        <div className="font-semibold text-card-foreground">{testimonial.author}</div>
+        <div className="font-semibold text-card-foreground">
+          {testimonial.author}
+        </div>
         <div className="text-sm text-muted-foreground">
           {testimonial.role} at {testimonial.company}
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
 
 export function Testimonials() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 sm:py-32 bg-background">
+    <section id="testimonials" className="py-20 sm:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -84,7 +96,9 @@ export function Testimonials() {
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            animate={
+              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }
+            }
             transition={{ duration: 0.4, delay: 0.1 }}
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm mb-6"
           >
@@ -105,10 +119,14 @@ export function Testimonials() {
 
         <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={testimonial.author} testimonial={testimonial} index={index} />
+            <TestimonialCard
+              key={testimonial.author}
+              testimonial={testimonial}
+              index={index}
+            />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
